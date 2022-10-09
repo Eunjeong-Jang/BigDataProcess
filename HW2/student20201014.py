@@ -27,9 +27,6 @@ max_grade.append((int)(len(total) * 0.3))
 max_grade.append((int)(len(total) * 0.5))
 max_grade.append((int)(len(total) * 0.7))
 max_grade.append((int)(len(total) * 0.85))
-print(total)
-print(sorted_total)
-print(max_grade)
 
 index = 0
 while index < 5:
@@ -40,7 +37,6 @@ while index < 5:
 			max_grade[index] = sorted_total[max_grade[index] - 1]
 		
 	index += 1
-print(max_grade)
 
 row_num2 = 1
 for row in ws:
