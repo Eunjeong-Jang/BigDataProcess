@@ -33,12 +33,12 @@ while index < 5:
 	if max_grade[index] == 0:
 		max_grade[index] = 1000
 	else:
-		if max_grade[index] + 1 < len(total):
-			if sorted_total[max_grade[index]] == sorted_total[max_grade[index] + 1]:
+		if max_grade[index] < len(total):
+			if sorted_total[max_grade[index] - 1] == sorted_total[max_grade[index]]:
 				max_grade[index] = 1000 #받을 수 없는 학점에는 1000 입력
 			else:
 				max_grade[index] = sorted_total[max_grade[index] - 1]
-		elif max_grade[index] + 1 == len(total):
+		elif max_grade[index] == len(total):
 			max_grade[index] = sorted_total[max_grade[index] - 1]
 	index += 1
 
