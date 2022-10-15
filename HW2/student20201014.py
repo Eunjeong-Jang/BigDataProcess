@@ -28,40 +28,39 @@ max_grade.append((int)(len(total) * 0.5))
 max_grade.append((int)(len(total) * 0.7))
 max_grade.append((int)(len(total) * 0.85))
 
+gradeNList = [1000, 1000, 1000, 1000, 1000] #해당 학점을 받을 수 있는 인원수
 index = 0
 while index < 5:
-	if max_grade[index] == 0:
-		max_grade[index] = 1000 #받을 수 없는 학점에는 1000 입력
-	else:
+	if max_grade[index] != 0:
 		if max_grade[index] < len(total):
 			if sorted_total[max_grade[index] - 1] == sorted_total[max_grade[index]]:
 				i = max_grade[index] - 2
-				while i > 0:
+				if index == 0: endI = 0
+				else: endI = max_grade[index - 1]
+				
+				while i > endI:
 					if sorted_total[i] != sorted_total[max_grade[index]]:
-						max_grade[index] = sorted_total[i]
+						gradeNList[index] = sorted_total[i]
 						break
 					i -= 1
-				
-				if i == 0:
-					max_grade[index] = 1000
 			else:
-				max_grade[index] = sorted_total[max_grade[index] - 1]
+				gradeNList[index] = sorted_total[max_grade[index] - 1]
 		elif max_grade[index] == len(total):
-			max_grade[index] = sorted_total[max_grade[index] - 1]
+			gradeNList[index] = sorted_total[max_grade[index] - 1]
 	index += 1
 
 row_num2 = 1
 for row in ws:
 	if row_num2 != 1:
-		if ws.cell(row = row_num2, column = 7).value >= max_grade[0]:
+		if ws.cell(row = row_num2, column = 7).value >= gradeNList[0]:
 			ws.cell(row = row_num2, column = 8).value = 'A+'
-		elif ws.cell(row = row_num2, column = 7).value >= max_grade[1]:
+		elif ws.cell(row = row_num2, column = 7).value >= gradeNList[1]:
 			ws.cell(row = row_num2, column = 8).value = 'A0'
-		elif ws.cell(row = row_num2, column = 7).value >= max_grade[2]:
+		elif ws.cell(row = row_num2, column = 7).value >= gradeNList[2]:
 			ws.cell(row = row_num2, column = 8).value = 'B+'
-		elif ws.cell(row = row_num2, column = 7).value >= max_grade[3]:
+		elif ws.cell(row = row_num2, column = 7).value >= gradeNList[3]:
 			ws.cell(row = row_num2, column = 8).value = 'B0'
-		elif ws.cell(row = row_num2, column = 7).value >= max_grade[4]:
+		elif ws.cell(row = row_num2, column = 7).value >= gradeNList[4]:
 			ws.cell(row = row_num2, column = 8).value = 'C+'
 		else:
 			ws.cell(row = row_num2, column = 8).value = 'C0'
