@@ -31,11 +31,19 @@ max_grade.append((int)(len(total) * 0.85))
 index = 0
 while index < 5:
 	if max_grade[index] == 0:
-		max_grade[index] = 1000
+		max_grade[index] = 1000 #받을 수 없는 학점에는 1000 입력
 	else:
 		if max_grade[index] < len(total):
 			if sorted_total[max_grade[index] - 1] == sorted_total[max_grade[index]]:
-				max_grade[index] = 1000 #받을 수 없는 학점에는 1000 입력
+				i = max_grade[index] - 2
+				while i > 0:
+					if sorted_total[i] != sorted_total[max_grade[index]]:
+						max_grade[index] = sorted_total[i]
+						break
+					i -= 1
+				
+				if i == 0:
+					max_grade[index] = 1000
 			else:
 				max_grade[index] = sorted_total[max_grade[index] - 1]
 		elif max_grade[index] == len(total):
