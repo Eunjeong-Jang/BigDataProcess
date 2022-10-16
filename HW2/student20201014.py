@@ -22,13 +22,13 @@ for row in ws:
 #grade 계산
 sorted_total = sorted(total, reverse=True) #점수 내림차순 정렬
 max_grade = [0, 0, 0, 0, 0] #몇 등까지 해당 학점(A+ ~ C+)을 받을 수 있는지
-max_grade[1] = ((int)(len(total) * 0.3)) #A0
+max_grade[1] = ((int)(len(total) // (10 / 3))) #A0
 max_grade[0] = ((int)(max_grade[1] // 2)) #A+
-max_grade[3] = ((int)(len(total) * 0.7)) #B0
+max_grade[3] = ((int)(len(total) // (10 / 7))) #B0
 max_grade[2] = ((int)((max_grade[3] - max_grade[1]) // 2 + max_grade[1])) #B+
 max_grade[4] = ((int)((max_grade[3] + len(total)) // 2)) #C+
 
-gradeNList = [1000, 1000, 1000, 1000, 1000] #해당 학점을 받을 수 있는 인원수
+gradeNList = [1000, 1000, 1000, 1000, 1000]
 index = 0
 while index < 5:
 	if max_grade[index] != 0:
